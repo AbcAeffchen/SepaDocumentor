@@ -1,17 +1,17 @@
 SepaDocumenter - A Sephpa module to generate documentation files (PDF) for SEPA xml files
 ===============
 
-##General
+## General
 **SepaDocumenter** is a module for [Sephpa](https://github.com/AbcAeffchen/Sephpa)
 to create file routing slips and control lists as PDF file(s) while generating SEPA xml files.
 
-##Requirements
+## Requirements
 SepaDocumenter requires PHP >= 5.6 and mPDF 6.1.0. It works with Sephpa >= 2.0 but you can also
 use it with other SEPA projects.
 
-##Installation
+## Installation
 
-###Composer
+### Composer
 Just add
 
 ```json
@@ -25,30 +25,30 @@ Just add
 to your `composer.json` and include the Composer autoloader to your script. If you want to use
 SepaDocumenter with Sephpa, you also need to add the line `"abcaeffchen/sephpa": "~2.0.0"`
 
-###Direct download
+### Direct download
 You can download it here on GitHub. You need to make it available in all files, where Sephpa is
 used. You also have to download [mPDF](https://gitub.com/mpdf/mpdf) and make it available to SepaDocumenter.
 It integrates with Sephpa, so you don't have to do anything else.
 
-##What do the PDF files contain?
+## What do the PDF files contain?
 There are two files that can be generated: File Routing Slip and Control Lists.
  
-###File Routing Slip
+### File Routing Slip
 The File Routing Slip contains a summary of the SEPA file. This contains the user name of the 
 creator and ID of the file,
 the number of transactions and the sum of the transferred money and some more information.
 
-###Control List
+### Control List
 This contains a detailed list of all transactions that are contained in the SEPA file.
 
-##Personalize the PDF files
+## Personalize the PDF files
 You can modify the templates in `src/templates` to change the look of the PDF files.
 This files also contain the localizations. There are a german and english template included but
 there is a good chance that the english version is a very bad translations, since I have no
 clue about finance speak. So I would be happy if someone will check this and send me a correct 
 version :)
 
-##How to use
+## How to use
 
 ### With Sephpa
 Just use Sephpa as usual. When you call download or store, set the `addDocumentation` flag.
@@ -65,5 +65,5 @@ There is only one function for each type of document:
 
 [add documentation here]
 
-##License
+## License
 Licensed under the LGPL v3.0 License.

@@ -2,9 +2,10 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use PHPUnit\Framework\TestCase;
 use AbcAeffchen\SepaDocumenter\FileRoutingSlip;
 
-class TestFileRoutingSlip extends PHPUnit_Framework_TestCase
+class TestFileRoutingSlip extends TestCase
 {
 
     protected $fileRoutingSlipDataWithBIC;
@@ -100,7 +101,7 @@ class TestFileRoutingSlip extends PHPUnit_Framework_TestCase
 <table style="width: 100%; margin-top: 2cm; border: 0 solid;">
     <tr>
         <td></td>
-        <td style="width: 25%; border-bottom: 1px solid; text-align: right;">,</td>
+        <td style="width: 25%; border-bottom: 1px solid; text-align: right;"></td>
         <td> 11.04.2017</td>
         <td style="width: 35%; border-bottom: 1px solid;"></td>
         <td></td>
@@ -169,7 +170,7 @@ HTML;
 <table style="width: 100%; margin-top: 2cm; border: 0 solid;">
     <tr>
         <td></td>
-        <td style="width: 25%; border-bottom: 1px solid; text-align: right;">,</td>
+        <td style="width: 25%; border-bottom: 1px solid; text-align: right;"></td>
         <td> 11.04.2017</td>
         <td style="width: 35%; border-bottom: 1px solid;"></td>
         <td></td>
@@ -209,20 +210,27 @@ HTML;
     public function testFileRoutingSlipPDF()
     {
         // create PDF with BIC
+        $file_name = __DIR__ . '/file_routing_slip_with_bic.pdf';
         $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
                                             $this->fileRoutingSlipDataWithBIC);
 
-        $file = fopen(__DIR__ . '/file_routing_slip_with_bic.pdf', "w");
+        $file = fopen($file_name, "wb");
         fwrite($file, $html);
         fclose($file);
 
+        self::assertTrue(file_exists($file_name) && filesize($file_name) > 0);
+
+
         // create PDF without BIC
+        $file_name = __DIR__ . '/file_routing_slip_without_bic.pdf';
         $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
                                             $this->fileRoutingSlipDataWithoutBIC);
 
-        $file = fopen(__DIR__ . '/file_routing_slip_without_bic.pdf', "w");
+        $file = fopen($file_name, "wb");
         fwrite($file, $html);
         fclose($file);
+
+        self::assertTrue(file_exists($file_name) && filesize($file_name) > 0);
     }
 
 

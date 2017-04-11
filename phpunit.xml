@@ -10,8 +10,8 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
-        <testsuite name="Sephpa Tests">
-            <file>./tests/TestFileRoutingSlip.php</file>
+        <testsuite name="SepaDocumenter Tests">
+            <file>tests/TestFileRoutingSlip.php</file>
         </testsuite>
     </testsuites>
     <filter>

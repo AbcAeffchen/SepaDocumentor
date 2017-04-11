@@ -1,0 +1,229 @@
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use AbcAeffchen\SepaDocumenter\FileRoutingSlip;
+
+class TestFileRoutingSlip extends PHPUnit_Framework_TestCase
+{
+
+    protected $fileRoutingSlipDataWithBIC;
+    protected $fileRoutingSlipDataWithoutBIC;
+    protected $expectedFileRoutingSlipWithBIC;
+    protected $expectedFileRoutingSlipWithoutBIC;
+
+    protected function setUp()
+    {
+        $this->fileRoutingSlipDataWithBIC = ['file_name'              => 'fileName',
+                                             'scheme_version'         => 'pain.001.002.03',
+                                             'payment_type'           => 'credit transfer',
+                                             'message_id'             => 'some message id',
+                                             'creation_date_time'     => '13.01.2017',
+                                             'initialising_party'     => 'Some Guy',
+                                             'collection_reference'   => 'some collection id',
+                                             'bic'                    => 'some bic',
+                                             'iban'                   => 'some iban',
+                                             'due_date'               => 'some day',
+                                             'number_of_transactions' => '5',
+                                             'control_sum'            => '123,45 €',
+                                             'current_date'           => date('d.m.Y')];
+
+        $this->fileRoutingSlipDataWithoutBIC = ['file_name'              => 'fileName',
+                                                'scheme_version'         => 'pain.001.002.03',
+                                                'payment_type'           => 'credit transfer',
+                                                'message_id'             => 'some message id',
+                                                'creation_date_time'     => '13.01.2017',
+                                                'initialising_party'     => 'Some Guy',
+                                                'collection_reference'   => 'some collection id',
+                                                'iban'                   => 'some iban',
+                                                'due_date'               => 'some day',
+                                                'number_of_transactions' => '5',
+                                                'control_sum'            => '123,45 €',
+                                                'current_date'           => date('d.m.Y')];
+
+        $this->expectedFileRoutingSlipWithBIC = <<<'HTML'
+<h2 style="text-align: center;">Sephpa Begleitzettel</h2>
+
+<table style="margin-top: 2cm; border: 0; width: 100%;">
+    <tr>
+        <td>Dateiname</td>
+        <td style="text-align: right;">fileName</td>
+    </tr>
+    <tr>
+        <td>Schemaversion</td>
+        <td style="text-align: right;">pain.001.002.03</td>
+    </tr>
+    <tr>
+        <td>Zahlungsart</td>
+        <td style="text-align: right;">credit transfer</td>
+    </tr>
+    <tr>
+        <td>Nachrichten-ID</td>
+        <td style="text-align: right;">some message id</td>
+    </tr>
+    <tr>
+        <td>Erstellungsdatum und -zeit</td>
+        <td style="text-align: right;">13.01.2017</td>
+    </tr>
+    <tr>
+        <td>Auftraggeber</td>
+        <td style="text-align: right;">Some Guy</td>
+    </tr>
+    <tr>
+        <td>Sammlerreferenz</td>
+        <td style="text-align: right;">some collection id</td>
+    </tr>
+    
+    <tr>
+        <td>BIC</td>
+        <td style="text-align: right;">some bic</td>
+    </tr>
+    
+    <tr>
+        <td>IBAN</td>
+        <td style="text-align: right;">some iban</td>
+    </tr>
+    <tr>
+        <td>Ausführungstermin</td>
+        <td style="text-align: right;">some day</td>
+    </tr>
+    <tr>
+        <td>Anzahl der Zahlungssätze</td>
+        <td style="text-align: right;">5</td>
+    </tr>
+    <tr>
+        <td>Summe der Beträge</td>
+        <td style="text-align: right;">123,45 €</td>
+    </tr>
+</table>
+
+<table style="width: 100%; margin-top: 2cm; border: 0 solid;">
+    <tr>
+        <td></td>
+        <td style="width: 25%; border-bottom: 1px solid; text-align: right;">,</td>
+        <td> 11.04.2017</td>
+        <td style="width: 35%; border-bottom: 1px solid;"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align: center;">Ort</td>
+        <td></td>
+        <td style="text-align: center;">Unterschrift</td>
+        <td></td>
+    </tr>
+</table>
+
+HTML;
+        $this->expectedFileRoutingSlipWithoutBIC = <<<'HTML'
+<h2 style="text-align: center;">Sephpa Begleitzettel</h2>
+
+<table style="margin-top: 2cm; border: 0; width: 100%;">
+    <tr>
+        <td>Dateiname</td>
+        <td style="text-align: right;">fileName</td>
+    </tr>
+    <tr>
+        <td>Schemaversion</td>
+        <td style="text-align: right;">pain.001.002.03</td>
+    </tr>
+    <tr>
+        <td>Zahlungsart</td>
+        <td style="text-align: right;">credit transfer</td>
+    </tr>
+    <tr>
+        <td>Nachrichten-ID</td>
+        <td style="text-align: right;">some message id</td>
+    </tr>
+    <tr>
+        <td>Erstellungsdatum und -zeit</td>
+        <td style="text-align: right;">13.01.2017</td>
+    </tr>
+    <tr>
+        <td>Auftraggeber</td>
+        <td style="text-align: right;">Some Guy</td>
+    </tr>
+    <tr>
+        <td>Sammlerreferenz</td>
+        <td style="text-align: right;">some collection id</td>
+    </tr>
+    
+    <tr>
+        <td>IBAN</td>
+        <td style="text-align: right;">some iban</td>
+    </tr>
+    <tr>
+        <td>Ausführungstermin</td>
+        <td style="text-align: right;">some day</td>
+    </tr>
+    <tr>
+        <td>Anzahl der Zahlungssätze</td>
+        <td style="text-align: right;">5</td>
+    </tr>
+    <tr>
+        <td>Summe der Beträge</td>
+        <td style="text-align: right;">123,45 €</td>
+    </tr>
+</table>
+
+<table style="width: 100%; margin-top: 2cm; border: 0 solid;">
+    <tr>
+        <td></td>
+        <td style="width: 25%; border-bottom: 1px solid; text-align: right;">,</td>
+        <td> 11.04.2017</td>
+        <td style="width: 35%; border-bottom: 1px solid;"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align: center;">Ort</td>
+        <td></td>
+        <td style="text-align: center;">Unterschrift</td>
+        <td></td>
+    </tr>
+</table>
+
+HTML;
+
+
+    }
+
+    public function testFileRoutingSlipHTML()
+    {
+        $generatedHTML = FileRoutingSlip::createHTML('file_routing_slip_german.tpl',
+                                       $this->fileRoutingSlipDataWithBIC);
+
+        self::assertSame($this->expectedFileRoutingSlipWithBIC, $generatedHTML);
+        self::assertNotSame($this->expectedFileRoutingSlipWithoutBIC, $generatedHTML);
+    }
+
+    public function testFileRoutingSlipWithoutBICHTML()
+    {
+        $generatedHTML = FileRoutingSlip::createHTML('file_routing_slip_german.tpl',
+                                       $this->fileRoutingSlipDataWithoutBIC);
+
+        self::assertSame($this->expectedFileRoutingSlipWithoutBIC, $generatedHTML);
+        self::assertNotSame($this->expectedFileRoutingSlipWithBIC, $generatedHTML);
+    }
+
+    public function testFileRoutingSlipPDF()
+    {
+        // create PDF with BIC
+        $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
+                                            $this->fileRoutingSlipDataWithBIC);
+
+        $file = fopen(__DIR__ . '/file_routing_slip_with_bic.pdf', "w");
+        fwrite($file, $html);
+        fclose($file);
+
+        // create PDF without BIC
+        $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
+                                            $this->fileRoutingSlipDataWithoutBIC);
+
+        $file = fopen(__DIR__ . '/file_routing_slip_without_bic.pdf', "w");
+        fwrite($file, $html);
+        fclose($file);
+    }
+
+
+}

@@ -1,0 +1,30 @@
+{
+    "name": "abcaeffchen/sepa-documenter",
+    "type": "library",
+    "description": "Generates file routing slips and control lists from SEPA file data",
+    "keywords": ["sepa","xml","banking","files","finance","file routing slip","control list"],
+    "homepage": "https://github.com/AbcAeffchen/SepaDocumenter",
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Alexander Schickedanz (AbcAeffchen)",
+            "email": "abcaeffchen@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/AbcAeffchen/SepaDocumenter/issues"
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "mpdf/mpdf": "~6.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AbcAeffchen\\SepaDocumenter\\": ["src/"]
+        }
+    }
+}

@@ -1,5 +1,6 @@
 SepaDocumenter - A Sephpa module to generate documentation files (PDF) for SEPA xml files
 ===============
+[![Build Status](https://travis-ci.org/AbcAeffchen/SepaDocumenter.svg?branch=master)](https://travis-ci.org/AbcAeffchen/SepaDocumenter)
 
 ## General
 **SepaDocumenter** is a module for [Sephpa](https://github.com/AbcAeffchen/Sephpa)

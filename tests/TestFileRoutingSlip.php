@@ -1,4 +1,13 @@
 <?php
+/**
+ * SepaDocumenter
+ *
+ * @license   GNU LGPL v3.0 - For details have a look at the LICENSE file
+ * @copyright ©2017 Alexander Schickedanz
+ * @link      https://github.com/AbcAeffchen/SepaDocumenter
+ *
+ * @author    Alexander Schickedanz <abcaeffchen@gmail.com>
+ */
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -8,41 +17,41 @@ use AbcAeffchen\SepaDocumenter\FileRoutingSlip;
 class TestFileRoutingSlip extends TestCase
 {
 
-    protected $fileRoutingSlipDataWithBIC;
-    protected $fileRoutingSlipDataWithoutBIC;
-    protected $expectedFileRoutingSlipWithBIC;
-    protected $expectedFileRoutingSlipWithoutBIC;
+    protected $dataWithBIC;
+    protected $dataWithoutBIC;
+    protected $expectedOutputWithBIC;
+    protected $expectedOutputWithoutBIC;
 
     protected function setUp()
     {
-        $this->fileRoutingSlipDataWithBIC = ['file_name'              => 'fileName',
-                                             'scheme_version'         => 'pain.001.002.03',
-                                             'payment_type'           => 'credit transfer',
-                                             'message_id'             => 'some message id',
-                                             'creation_date_time'     => '13.01.2017',
-                                             'initialising_party'     => 'Some Guy',
-                                             'collection_reference'   => 'some collection id',
-                                             'bic'                    => 'some bic',
-                                             'iban'                   => 'some iban',
-                                             'due_date'               => 'some day',
-                                             'number_of_transactions' => '5',
-                                             'control_sum'            => '123,45 €',
-                                             'current_date'           => date('d.m.Y')];
+        $this->dataWithBIC = ['file_name'              => 'fileName',
+                              'scheme_version'         => 'pain.001.002.03',
+                              'payment_type'           => 'credit transfer',
+                              'message_id'             => 'some message id',
+                              'creation_date_time'     => '13.01.2017',
+                              'initialising_party'     => 'Some Guy',
+                              'collection_reference'   => 'some collection id',
+                              'bic'                    => 'some bic',
+                              'iban'                   => 'some iban',
+                              'due_date'               => 'some day',
+                              'number_of_transactions' => '5',
+                              'control_sum'            => '123,45 €',
+                              'current_date'           => '11.04.2017'];
 
-        $this->fileRoutingSlipDataWithoutBIC = ['file_name'              => 'fileName',
-                                                'scheme_version'         => 'pain.001.002.03',
-                                                'payment_type'           => 'credit transfer',
-                                                'message_id'             => 'some message id',
-                                                'creation_date_time'     => '13.01.2017',
-                                                'initialising_party'     => 'Some Guy',
-                                                'collection_reference'   => 'some collection id',
-                                                'iban'                   => 'some iban',
-                                                'due_date'               => 'some day',
-                                                'number_of_transactions' => '5',
-                                                'control_sum'            => '123,45 €',
-                                                'current_date'           => date('d.m.Y')];
+        $this->dataWithoutBIC = ['file_name'              => 'fileName',
+                                 'scheme_version'         => 'pain.001.002.03',
+                                 'payment_type'           => 'credit transfer',
+                                 'message_id'             => 'some message id',
+                                 'creation_date_time'     => '13.01.2017',
+                                 'initialising_party'     => 'Some Guy',
+                                 'collection_reference'   => 'some collection id',
+                                 'iban'                   => 'some iban',
+                                 'due_date'               => 'some day',
+                                 'number_of_transactions' => '5',
+                                 'control_sum'            => '123,45 €',
+                                 'current_date'           => '11.04.2017'];
 
-        $this->expectedFileRoutingSlipWithBIC = <<<'HTML'
+        $this->expectedOutputWithBIC    = <<<'HTML'
 <h2 style="text-align: center;">Sephpa Begleitzettel</h2>
 
 <table style="margin-top: 2cm; border: 0; width: 100%;">
@@ -116,7 +125,7 @@ class TestFileRoutingSlip extends TestCase
 </table>
 
 HTML;
-        $this->expectedFileRoutingSlipWithoutBIC = <<<'HTML'
+        $this->expectedOutputWithoutBIC = <<<'HTML'
 <h2 style="text-align: center;">Sephpa Begleitzettel</h2>
 
 <table style="margin-top: 2cm; border: 0; width: 100%;">
@@ -185,26 +194,24 @@ HTML;
 </table>
 
 HTML;
-
-
     }
 
-    public function testFileRoutingSlipHTML()
+    public function testFileRoutingSlipText()
     {
-        $generatedHTML = FileRoutingSlip::createHTML('file_routing_slip_german.tpl',
-                                       $this->fileRoutingSlipDataWithBIC);
+        $generatedHTML = FileRoutingSlip::createText('file_routing_slip_german.tpl',
+                                                     $this->dataWithBIC);
 
-        self::assertSame($this->expectedFileRoutingSlipWithBIC, $generatedHTML);
-        self::assertNotSame($this->expectedFileRoutingSlipWithoutBIC, $generatedHTML);
+        self::assertSame($this->expectedOutputWithBIC, $generatedHTML);
+        self::assertNotSame($this->expectedOutputWithoutBIC, $generatedHTML);
     }
 
-    public function testFileRoutingSlipWithoutBICHTML()
+    public function testFileRoutingSlipWithoutBICText()
     {
-        $generatedHTML = FileRoutingSlip::createHTML('file_routing_slip_german.tpl',
-                                       $this->fileRoutingSlipDataWithoutBIC);
+        $generatedHTML = FileRoutingSlip::createText('file_routing_slip_german.tpl',
+                                                     $this->dataWithoutBIC);
 
-        self::assertSame($this->expectedFileRoutingSlipWithoutBIC, $generatedHTML);
-        self::assertNotSame($this->expectedFileRoutingSlipWithBIC, $generatedHTML);
+        self::assertSame($this->expectedOutputWithoutBIC, $generatedHTML);
+        self::assertNotSame($this->expectedOutputWithBIC, $generatedHTML);
     }
 
     public function testFileRoutingSlipPDF()
@@ -212,7 +219,7 @@ HTML;
         // create PDF with BIC
         $file_name = __DIR__ . '/file_routing_slip_with_bic.pdf';
         $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
-                                            $this->fileRoutingSlipDataWithBIC);
+                                            $this->dataWithBIC);
 
         $file = fopen($file_name, "wb");
         fwrite($file, $html);
@@ -224,7 +231,7 @@ HTML;
         // create PDF without BIC
         $file_name = __DIR__ . '/file_routing_slip_without_bic.pdf';
         $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
-                                            $this->fileRoutingSlipDataWithoutBIC);
+                                            $this->dataWithoutBIC);
 
         $file = fopen($file_name, "wb");
         fwrite($file, $html);
@@ -232,6 +239,5 @@ HTML;
 
         self::assertTrue(file_exists($file_name) && filesize($file_name) > 0);
     }
-
 
 }

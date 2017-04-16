@@ -59,10 +59,11 @@ the documentation files as PDF files.
 ### With other SEPA libraries
 There is only one function for each type of document:
 
-- `FileRoutingSlip::createPDF($templateFile, $data, $options)` for file routing slips
+- `FileRoutingSlip::createPDF($templateFile, $data)` for file routing slips
  - `$templateFile` is the file name of a default template or a path to a custom template. A template
- can use any variable name you like written as `{{var_name}}`.
-- ``
+ can use any variable name you like written as `{{var_name}}` and conditionals like
+ `{{ifdef var_name}}... {{endif var_name}}` or `{{ifndef var_name}}... {{endif var_name}}`.
+- `ControlList::createPDF($templateFile, $data, $transactions)` for a control list
 
 [add documentation here]
 

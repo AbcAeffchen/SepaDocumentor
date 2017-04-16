@@ -12,6 +12,7 @@
     <testsuites>
         <testsuite name="SepaDocumenter Tests">
             <file>tests/TestFileRoutingSlip.php</file>
+            <file>tests/TestControlList.php</file>
         </testsuite>
     </testsuites>
     <filter>

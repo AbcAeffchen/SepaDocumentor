@@ -14,8 +14,8 @@ namespace AbcAeffchen\SepaDocumenter;
 
 class ControlList extends BasicDocumenter
 {
-    const TRANSACTION_BLOCK_REGEX = '#\{\{TRANSACTION\}\}([\s\S]+)\{\{/TRANSACTION\}\}#';
-    const TRANSACTION_NEXT = '{{NEXT_TRANSACTION}}';
+    const TRANSACTION_BLOCK_REGEX = '#\{\{TRANSACTION!\}\}([\s\S]+)?\{\{/TRANSACTION!\}\}#';
+    const TRANSACTION_NEXT = '{{NEXT_TRANSACTION!}}';
 
     /**
      * @param string     $templateFile  File name of a standard template file or a path to a custom template file

@@ -60,7 +60,7 @@
         <td style="font-weight: bold;">Betrag</td>
     </tr>
     </thead>
-    {{TRANSACTION}}
+    {{TRANSACTION!}}
     <tr style="border-bottom: 1px solid;">
         <td style="border-bottom: 1px solid #999;">{{due_date}}</td>
         <td style="border-bottom: 1px solid #999;">{{creditor_name}}<br>
@@ -69,5 +69,5 @@
         <td style="border-bottom: 1px solid #999;"></td>
         <td style="border-bottom: 1px solid #999;">{{amount}}</td>
     </tr>
-    {{/TRANSACTION}}
+    {{/TRANSACTION!}}
 </table>

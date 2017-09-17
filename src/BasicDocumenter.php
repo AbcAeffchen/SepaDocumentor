@@ -11,13 +11,10 @@
 
 namespace AbcAeffchen\SepaDocumenter;
 
-// todo make data array references (?)
-
-// todo add doc comments
-
 class BasicDocumenter
 {
     const PLACEHOLDER_REGEX = '#\{\{[a-zA-Z0-9_-]+\}\}#';
+    const COMMAND_REGEX = '#\{\{[a-zA-Z0-9_-]+!\}\}#';
 
     /**
      * Tries to load the content of a template file in path. If this is not possible, an
@@ -138,6 +135,7 @@ class BasicDocumenter
      */
     protected static function removeUnusedPlaceholders($text)
     {
-        return preg_replace(self::PLACEHOLDER_REGEX, '', $text);
+        $text = preg_replace(self::PLACEHOLDER_REGEX, '', $text);
+        return preg_replace(self::COMMAND_REGEX, '', $text);
     }
 }

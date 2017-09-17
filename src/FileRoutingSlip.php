@@ -17,8 +17,8 @@ class FileRoutingSlip extends BasicDocumenter
      * Replaces every `{{key}}` by `value` in the given template and returns the resulting text.
      *
      * @param string   $templateFile Name of default template file or path to custom template file.
-     * @param string[] $data         A key - value array containing the keys used in the template. The only
-     *                               depend on the template.
+     * @param string[] $data         A key - value array containing the keys used in the template. This only
+     *                               depends on the template.
      * @return string The resulting text.
      */
     public static function createText($templateFile, array $data)

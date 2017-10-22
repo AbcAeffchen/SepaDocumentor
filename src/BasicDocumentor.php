@@ -117,11 +117,11 @@ class BasicDocumentor
      *
      * @param string $html
      * @return string
-     * @throws \MpdfException
+     * @throws \Mpdf\MpdfException
      */
     protected static function mPDFWrapper($html)
     {
-        $pdf = new \mPDF();
+        $pdf = new \Mpdf\Mpdf();
         $pdf->WriteHTML($html);
 
         return $pdf->Output('','S');    // returns the PDF as a string

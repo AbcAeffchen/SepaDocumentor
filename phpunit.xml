@@ -10,7 +10,7 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
-        <testsuite name="SepaDocumenter Tests">
+        <testsuite name="SepaDocumentor Tests">
             <file>tests/TestFileRoutingSlip.php</file>
             <file>tests/TestControlList.php</file>
         </testsuite>

@@ -1,17 +1,17 @@
 <?php
 /**
- * SepaDocumenter
+ * SepaDocumentor
  *
  * @license   GNU LGPL v3.0 - For details have a look at the LICENSE file
  * @copyright ©2017 Alexander Schickedanz
- * @link      https://github.com/AbcAeffchen/SepaDocumenter
+ * @link      https://github.com/AbcAeffchen/SepaDocumentor
  *
  * @author    Alexander Schickedanz <abcaeffchen@gmail.com>
  */
 
-namespace AbcAeffchen\SepaDocumenter;
+namespace AbcAeffchen\SepaDocumentor;
 
-class FileRoutingSlip extends BasicDocumenter
+class FileRoutingSlip extends BasicDocumentor
 {
     /**
      * Replaces every `{{key}}` by `value` in the given template and returns the resulting text.

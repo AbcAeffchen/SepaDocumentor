@@ -1,18 +1,18 @@
-SepaDocumenter - A Sephpa module to generate documentation files (PDF) for SEPA xml files
+SepaDocumentor - A Sephpa module to generate documentation files (PDF) for SEPA xml files
 ===============
 
-[![Build Status](https://travis-ci.org/AbcAeffchen/SepaDocumenter.svg?branch=master)](https://travis-ci.org/AbcAeffchen/SepaDocumenter)
-[![Latest Stable Version](https://poser.pugx.org/abcaeffchen/sepa-documenter/v/stable)](https://packagist.org/packages/abcaeffchen/sepa-documenter)
-[![Total Downloads](https://poser.pugx.org/abcaeffchen/sepa-documenter/downloads)](https://packagist.org/packages/abcaeffchen/sepa-documenter)
-[![License](https://poser.pugx.org/abcaeffchen/sepa-documenter/license)](https://packagist.org/packages/abcaeffchen/sepa-documenter)
-[![Gitter](https://badges.gitter.im/AbcAeffchen/SepaDocumenter.svg)](https://gitter.im/AbcAeffchen/SepaDocumenter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Build Status](https://travis-ci.org/AbcAeffchen/SepaDocumentor.svg?branch=master)](https://travis-ci.org/AbcAeffchen/SepaDocumentor)
+[![Latest Stable Version](https://poser.pugx.org/abcaeffchen/sepa-documentor/v/stable)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
+[![Total Downloads](https://poser.pugx.org/abcaeffchen/sepa-documentor/downloads)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
+[![License](https://poser.pugx.org/abcaeffchen/sepa-documentor/license)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
+[![Gitter](https://badges.gitter.im/AbcAeffchen/SepaDocumentor.svg)](https://gitter.im/AbcAeffchen/SepaDocumentor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## General
-**SepaDocumenter** is a module for [Sephpa](https://github.com/AbcAeffchen/Sephpa)
+**SepaDocumentor** is a module for [Sephpa](https://github.com/AbcAeffchen/Sephpa)
 to create file routing slips and control lists as PDF file(s) while generating SEPA xml files.
 
 ## Requirements
-SepaDocumenter works with PHP >= 5.6, 7.0, 7.1 and HHVM and requires mPDF 6.1.0. It is an optional module
+SepaDocumentor works with PHP >= 5.6, 7.0, 7.1 and HHVM and requires mPDF 6.1.0. It is an optional module
 of Sephpa >= 2.0 but you can also use it with other SEPA projects as well.
 
 ## Installation
@@ -23,17 +23,17 @@ Just add
 ```json
 {
     "require": {
-        "abcaeffchen/sepa-documenter": "~1.0.0"
+        "abcaeffchen/sepa-documentor": "~1.0.0"
     }
 }
 ```
 
 to your `composer.json` and include the Composer autoloader to your script. If you want to use
-SepaDocumenter with Sephpa, you also need to add the line `"abcaeffchen/sephpa": "~2.0.0"`
+SepaDocumentor with Sephpa, you also need to add the line `"abcaeffchen/sephpa": "~2.0.0"`
 
 ### Direct download
 You can download it here on GitHub. You need to make it available in all files, where Sephpa is
-used. You also have to download [mPDF](https://gitub.com/mpdf/mpdf) and make it available to SepaDocumenter.
+used. You also have to download [mPDF](https://gitub.com/mpdf/mpdf) and make it available to SepaDocumentor.
 It integrates with Sephpa, so you don't have to do anything else.
 
 ## What do the PDF files contain?

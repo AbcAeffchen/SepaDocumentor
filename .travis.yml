@@ -14,6 +14,6 @@ matrix:
     - php: 7.2  # until mPDF supports PHP 7.2
 
 install:
-  - composer install --prefer-source --no-interaction --dev
+  - composer install --prefer-source --no-interaction
 
 script: vendor/phpunit/phpunit/phpunit

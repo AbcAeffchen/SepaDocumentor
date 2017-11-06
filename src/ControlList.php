@@ -66,13 +66,13 @@ class ControlList extends BasicDocumentor
     /**
      * Calls ControlList::createText and uses the result as source for a PDF file.
      *
-     * @param string   $templateFile   The path to the template file or the name of a file in the
+     * @param string     $templateFile The path to the template file or the name of a file in the
      *                                 template directory. This template should contain HTML code
      *                                 and can contain some special commands used by mPDF.
-     * @param string[] $data           See ControlList::createText() for Details
+     * @param string[]   $data         See ControlList::createText() for Details
      * @param string[][] $transactions See ControlList::createText() for details.
-     * @return string                  The PDF file content. Write this string into a PDF file.
-     * @throws \MpdfException
+     * @return string The PDF file content. Write this string into a PDF file.
+     * @throws \Mpdf\MpdfException
      */
     public static function createPDF($templateFile, array $data, array $transactions)
     {

@@ -44,7 +44,7 @@ class FileRoutingSlip extends BasicDocumentor
      *                                 and can contain some special commands used by mPDF.
      * @param string[] $data           See FileRoutingSlip::createText() for details
      * @return string PDF file         The PDF file content. Write this string into a PDF file.
-     * @throws \MpdfException
+     * @throws \Mpdf\MpdfException
      */
     public static function createPDF($templateFile, array $data)
     {
@@ -53,5 +53,4 @@ class FileRoutingSlip extends BasicDocumentor
 
         return self::mPDFWrapper($fileRoutingSlipHTML);
     }
-
 }

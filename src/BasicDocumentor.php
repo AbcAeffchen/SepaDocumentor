@@ -11,6 +11,10 @@
 
 namespace AbcAeffchen\SepaDocumentor;
 
+use InvalidArgumentException;
+use Mpdf\Mpdf;
+use Mpdf\MpdfException;
+
 class BasicDocumentor
 {
     const PLACEHOLDER_REGEX = '#\{\{[a-zA-Z0-9_-]+\}\}#';
@@ -22,7 +26,7 @@ class BasicDocumentor
      *
      * @param string $path
      * @return string
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected static function getTemplate($path)
     {
@@ -31,7 +35,7 @@ class BasicDocumentor
         elseif(file_exists(__DIR__ . '/templates/' . $path))
             $template = file_get_contents(__DIR__ . '/templates/' . $path);
         else
-            throw new \InvalidArgumentException('Template file not found.');
+            throw new InvalidArgumentException('Template file not found.');
 
         return $template;
     }
@@ -61,8 +65,9 @@ class BasicDocumentor
      * Finds all conditionals `{{ifdef [a-zA-Z0-9_-]}}` and `{{ifndef [a-zA-Z0-9_-]}}` and
      * checks if the keys are set (or not set) in the data array.
      *
-     * @param string $template
-     * @param array $data
+     * @param string     $template
+     * @param array      $data
+     * @param array|null $conditionals
      * @return string
      */
     protected static function evalTemplateConditionals($template, array $data, array $conditionals = null)
@@ -117,11 +122,11 @@ class BasicDocumentor
      *
      * @param string $html
      * @return string
-     * @throws \Mpdf\MpdfException
+     * @throws MpdfException
      */
     protected static function mPDFWrapper($html)
     {
-        $pdf = new \Mpdf\Mpdf();
+        $pdf = new Mpdf();
         $pdf->WriteHTML($html);
 
         return $pdf->Output('','S');    // returns the PDF as a string

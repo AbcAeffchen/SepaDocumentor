@@ -11,6 +11,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use Mpdf\MpdfException;
 use PHPUnit\Framework\TestCase;
 use AbcAeffchen\SepaDocumentor\ControlList;
 
@@ -23,7 +24,7 @@ class TestControlList extends TestCase
     protected $expectedOutputWithBIC;
     protected $expectedOutputWithoutBIC;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->dataWithBIC = ['file_name'              => 'fileName',
                               'message_id'             => 'some message id',
@@ -288,6 +289,9 @@ HTML;
         self::assertNotSame($this->expectedOutputWithBIC, $generatedHTML);
     }
 
+    /**
+     * @throws MpdfException
+     */
     public function testFileRoutingSlipPDF()
     {
         // create PDF with BIC
@@ -295,19 +299,18 @@ HTML;
         $html = ControlList::createPDF('credit_transfer_control_list_german.tpl',
                                             $this->dataWithBIC, $this->transactions);
 
-        $file = fopen($file_name, "wb");
+        $file = fopen($file_name, 'wb');
         fwrite($file, $html);
         fclose($file);
 
         self::assertTrue(file_exists($file_name) && filesize($file_name) > 0);
-
 
         // create PDF without BIC
         $file_name = __DIR__ . '/control_list_without_bic.pdf';
         $html = ControlList::createPDF('credit_transfer_control_list_german.tpl',
                                        $this->dataWithoutBIC, $this->transactions);
 
-        $file = fopen($file_name, "wb");
+        $file = fopen($file_name, 'wb');
         fwrite($file, $html);
         fclose($file);
 
@@ -328,11 +331,10 @@ HTML;
         $html = ControlList::createPDF('credit_transfer_control_list_german.tpl',
                                        $this->dataWithoutBIC, $manyTransactions);
 
-        $file = fopen($file_name, "wb");
+        $file = fopen($file_name, 'wb');
         fwrite($file, $html);
         fclose($file);
 
         self::assertTrue(file_exists($file_name) && filesize($file_name) > 0);
     }
-
 }

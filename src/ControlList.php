@@ -12,6 +12,9 @@
 namespace AbcAeffchen\SepaDocumentor;
 
 
+use InvalidArgumentException;
+use Mpdf\MpdfException;
+
 class ControlList extends BasicDocumentor
 {
     const TRANSACTION_BLOCK_REGEX = '#\{\{TRANSACTION!\}\}([\s\S]+)?\{\{/TRANSACTION!\}\}#';
@@ -31,7 +34,7 @@ class ControlList extends BasicDocumentor
 
         // get transaction template
         if(preg_match(self::TRANSACTION_BLOCK_REGEX, $template, $matches) !== 1)
-            throw new \InvalidArgumentException('Template does not contain a transaction block.');
+            throw new InvalidArgumentException('Template does not contain a transaction block.');
 
         $transactionTemplate = $matches[1] . self::TRANSACTION_NEXT;
 
@@ -72,7 +75,7 @@ class ControlList extends BasicDocumentor
      * @param string[]   $data         See ControlList::createText() for Details
      * @param string[][] $transactions See ControlList::createText() for details.
      * @return string The PDF file content. Write this string into a PDF file.
-     * @throws \Mpdf\MpdfException
+     * @throws MpdfException
      */
     public static function createPDF($templateFile, array $data, array $transactions)
     {

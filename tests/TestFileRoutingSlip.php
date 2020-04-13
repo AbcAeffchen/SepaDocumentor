@@ -11,6 +11,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use Mpdf\MpdfException;
 use PHPUnit\Framework\TestCase;
 use AbcAeffchen\SepaDocumentor\FileRoutingSlip;
 
@@ -22,7 +23,7 @@ class TestFileRoutingSlip extends TestCase
     protected $expectedOutputWithBIC;
     protected $expectedOutputWithoutBIC;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->dataWithBIC = ['file_name'              => 'fileName',
                               'scheme_version'         => 'pain.001.002.03',
@@ -214,6 +215,9 @@ HTML;
         self::assertNotSame($this->expectedOutputWithBIC, $generatedHTML);
     }
 
+    /**
+     * @throws MpdfException
+     */
     public function testFileRoutingSlipPDF()
     {
         // create PDF with BIC
@@ -221,23 +225,21 @@ HTML;
         $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
                                             $this->dataWithBIC);
 
-        $file = fopen($file_name, "wb");
+        $file = fopen($file_name, 'wb');
         fwrite($file, $html);
         fclose($file);
 
         self::assertTrue(file_exists($file_name) && filesize($file_name) > 0);
-
 
         // create PDF without BIC
         $file_name = __DIR__ . '/file_routing_slip_without_bic.pdf';
         $html = FileRoutingSlip::createPDF('file_routing_slip_german.tpl',
                                             $this->dataWithoutBIC);
 
-        $file = fopen($file_name, "wb");
+        $file = fopen($file_name, 'wb');
         fwrite($file, $html);
         fclose($file);
 
         self::assertTrue(file_exists($file_name) && filesize($file_name) > 0);
     }
-
 }

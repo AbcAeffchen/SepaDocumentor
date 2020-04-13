@@ -1,5 +1,6 @@
 .idea/
 vendor/
 tests/*.pdf
+.phpunit.result.cache
 composer.phar
 composer.lock

@@ -12,7 +12,7 @@ SepaDocumentor - A Sephpa module to generate documentation files (PDF) for SEPA 
 to create file routing slips and control lists as PDF file(s) while generating SEPA xml files.
 
 ## Requirements
-SepaDocumentor works with PHP 5.6, 7.0, 7.1, 7.2 and HHVM and requires mPDF 7.0. It is an optional module
+SepaDocumentor works with PHP 7.2, 7.3 and requires mPDF 7.0. It is an optional module
 of Sephpa >= 2.0 but you can also use it with other SEPA projects as well.
 
 ## Installation
@@ -23,7 +23,7 @@ Just add
 ```json
 {
     "require": {
-        "abcaeffchen/sepa-documentor": "~1.0.0"
+        "abcaeffchen/sepa-documentor": "~2.0"
     }
 }
 ```

@@ -1,9 +1,9 @@
 SepaDocumentor - Change Log
 ===============
 
-## 1.1.0 - Apr 13, '20
+## 2.0.0 - Apr 13, '20
 - Update mPDF to version 8 to support newer PHP versions.
-- support for PHP 5.6 is not tested anymore.
+- Support for old PHP versions and HHVM was dropped.
 
 ## 1.0.0 - Nov 7, '17
 

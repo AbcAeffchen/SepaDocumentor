@@ -33,7 +33,7 @@ SepaDocumentor with Sephpa, you also need to add the line `"abcaeffchen/sephpa":
 
 ### Direct download
 You can download it here on GitHub. You need to make it available in all files, where Sephpa is
-used. You also have to download [mPDF](https://gitub.com/mpdf/mpdf) and make it available to SepaDocumentor.
+used. You also have to download [mPDF](https://github.com/mpdf/mpdf) and make it available to SepaDocumentor.
 It integrates with Sephpa, so you don't have to do anything else.
 
 ## What do the PDF files contain?

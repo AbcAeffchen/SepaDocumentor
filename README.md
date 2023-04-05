@@ -1,7 +1,7 @@
 SepaDocumentor - A Sephpa module to generate documentation files (PDF) for SEPA xml files
 ===============
 
-[![Build Status](https://travis-ci.org/AbcAeffchen/SepaDocumentor.svg?branch=master)](https://travis-ci.org/AbcAeffchen/SepaDocumentor)
+[![Unit Tests](https://github.com/AbcAeffchen/SepaDocumentor/actions/workflows/php.yml/badge.svg)](https://github.com/AbcAeffchen/SepaDocumentor/actions/workflows/php.yml)
 [![Latest Stable Version](https://poser.pugx.org/abcaeffchen/sepa-documentor/v/stable)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
 [![Total Downloads](https://poser.pugx.org/abcaeffchen/sepa-documentor/downloads)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
 [![License](https://poser.pugx.org/abcaeffchen/sepa-documentor/license)](https://packagist.org/packages/abcaeffchen/sepa-documentor)

@@ -12,7 +12,7 @@
     "control list"
   ],
   "homepage": "https://github.com/AbcAeffchen/SepaDocumentor",
-  "license": "LGPL-3.0",
+  "license": "LGPL-3.0-only",
   "authors": [
     {
       "name": "Alexander Schickedanz (AbcAeffchen)",
@@ -24,7 +24,7 @@
     "issues": "https://github.com/AbcAeffchen/SepaDocumentor/issues"
   },
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.1",
     "mpdf/mpdf": "^8 || ^7"
   },
   "require-dev": {

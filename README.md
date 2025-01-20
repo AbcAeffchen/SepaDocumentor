@@ -12,8 +12,8 @@ SepaDocumentor - A Sephpa module to generate documentation files (PDF) for SEPA 
 to create file routing slips and control lists as PDF file(s) while generating SEPA xml files.
 
 ## Requirements
-SepaDocumentor works with PHP 7.2, 7.3, 7.4 and requires mPDF >=7.0. It is an optional module
-of Sephpa >= 2.0 but you can also use it with other SEPA projects as well.
+SepaDocumentor works with PHP >=8.1 and requires mPDF >=8.0. It is an optional module
+of Sephpa >= 2.0, but you can also use it with other SEPA projects as well.
 
 ## Installation
 
@@ -40,7 +40,7 @@ It integrates with Sephpa, so you don't have to do anything else.
 There are two files that can be generated: File Routing Slip and Control Lists.
  
 ### File Routing Slip
-The File Routing Slip contains a summary of the SEPA file. This contains the user name of the 
+The File Routing Slip contains a summary of the SEPA file. This contains the username of the 
 creator and ID of the file,
 the number of transactions and the sum of the transferred money and some more information.
 
@@ -66,12 +66,12 @@ the documentation files as PDF files.
 #### Overview
 There are four functions you can use:
 - `FileRoutingSlip::createText($template, $data)`: Inserts the $data array into the template.
-`$template` can be a path to a template or the name of a default template and it can have any format.
+`$template` can be a path to a template or the name of a default template, and it can have any format.
 - `FileRoutingSlip::createPDF($template, $data)`: The same as `createText()`, but the template
 needs to be in HTML format.
 - `ControlList::createText($template, $data, $transactions)`: Inserts the $data array into the template and repeats
 the transaction block as often as needed, each filled with the values from one of the arrays in `$transactions`
-`$template` can be a path to a template or the name of a default template and it can have any format.
+`$template` can be a path to a template or the name of a default template, and it can have any format.
 - `ControlList::createPDF($template, $data, $transactions)`: The same as `createText()`, but the template
 needs to be in HTML format.
 
@@ -82,7 +82,7 @@ Templates can have any format. You can use
  - `{{ifdef KEYWORD}} BODY {{endif KEYWORD}}`: `BODY` is only printed if `KEYWORD` is set. `BODY`
  can contain placeholders and other conditionals as long as the nested conditionals use other keywords.
  - `{{ifndef KEYWORD}} BODY {{endif KEYWORD}}`: `BODY` is only printed if `KEYWORD` is *not* set.
- `BODY` can also contain placehodlers and other conditionals as long as the nested conditionals
+ `BODY` can also contain placeholders and other conditionals as long as the nested conditionals
  use other keywords.
 - `{{TRANSACTION!}} BLOCK {{/TRANSACTION!}}`: This is a spacial command block only allowed for
 control lists. `BLOCK` can contain any other placeholders or conditionals. This block will be
@@ -91,7 +91,7 @@ Every unused placeholder will be removed from the output.
 
 #### Inputs
 - `$data` is a key => value array, where keys are the placeholders without the braces.
-- `$transactions` is a array of key => value arrays, one for each transaction.
+- `$transactions` is an array of key => value arrays, one for each transaction.
 
 Not every placeholder needs to be present in the input. Keys without a corresponding placeholder
 will be ignored.

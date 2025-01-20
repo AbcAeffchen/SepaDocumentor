@@ -17,7 +17,7 @@ use Mpdf\MpdfException;
 
 class ControlList extends BasicDocumentor
 {
-    const TRANSACTION_BLOCK_REGEX = '#\{\{TRANSACTION!\}\}([\s\S]+)?\{\{/TRANSACTION!\}\}#';
+    const TRANSACTION_BLOCK_REGEX = '#\{\{TRANSACTION!}}([\s\S]+)?\{\{/TRANSACTION!}}#';
     const TRANSACTION_NEXT = '{{NEXT_TRANSACTION!}}';
 
     /**

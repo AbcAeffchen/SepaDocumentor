@@ -17,8 +17,8 @@ use Mpdf\MpdfException;
 
 class BasicDocumentor
 {
-    const PLACEHOLDER_REGEX = '#\{\{[a-zA-Z0-9_-]+\}\}#';
-    const COMMAND_REGEX = '#\{\{[a-zA-Z0-9_-]+!\}\}#';
+    const PLACEHOLDER_REGEX = '#\{\{[a-zA-Z0-9_-]+}}#';
+    const COMMAND_REGEX = '#\{\{[a-zA-Z0-9_-]+!}}#';
 
     /**
      * Tries to load the content of a template file in path. If this is not possible, an
@@ -50,12 +50,12 @@ class BasicDocumentor
      */
     protected static function getTemplateConditionals($template)
     {
-        $conditionals = ['set' => [], 'not_set' => []];
+        $conditionals = [];
 
-        preg_match_all('#\{\{ifdef ([a-zA-Z0-9_-]+)\}\}#', $template, $matches);
+        preg_match_all('#\{\{ifdef ([a-zA-Z0-9_-]+)}}#', $template, $matches);
         $conditionals['set'] = $matches[1];
 
-        preg_match_all('#\{\{ifndef ([a-zA-Z0-9_-]+)\}\}#', $template, $matches);
+        preg_match_all('#\{\{ifndef ([a-zA-Z0-9_-]+)}}#', $template, $matches);
         $conditionals['not_set'] = $matches[1];
 
         return $conditionals;
@@ -70,7 +70,7 @@ class BasicDocumentor
      * @param array|null $conditionals
      * @return string
      */
-    protected static function evalTemplateConditionals($template, array $data, array $conditionals = null)
+    protected static function evalTemplateConditionals($template, array $data, ?array $conditionals = null)
     {
         // find all conditionals
         if(!isset($conditionals))
@@ -85,7 +85,7 @@ class BasicDocumentor
             if(isset($data[$conditional]))
                 $template = str_replace(['{{ifdef '. $conditional . '}}', '{{endif ' . $conditional . '}}'], '', $template);
             else
-                $template = preg_replace('#\{\{ifdef ' . $conditional . '\}\}[\s\S]*\{\{endif ' . $conditional . '\}\}#', '', $template);
+                $template = preg_replace('#\{\{ifdef ' . $conditional . '}}[\s\S]*\{\{endif ' . $conditional . '}}#', '', $template);
         }
 
         foreach($conditionals['not_set'] as $conditional)
@@ -93,7 +93,7 @@ class BasicDocumentor
             if(!isset($data[$conditional]))
                 $template = str_replace(['{{ifndef '. $conditional . '}}', '{{endif ' . $conditional . '}}'], '', $template);
             else
-                $template = preg_replace('#\{\{ifndef ' . $conditional . '\}\}[\s\S]*\{\{endif ' . $conditional . '\}\}#', '', $template);
+                $template = preg_replace('#\{\{ifndef ' . $conditional . '}}[\s\S]*\{\{endif ' . $conditional . '}}#', '', $template);
         }
 
         return $template;
@@ -136,7 +136,7 @@ class BasicDocumentor
      * Removes unused placeholders from the $text and returns the result.
      *
      * @param string $text
-     * @return mixed
+     * @return string
      */
     protected static function removeUnusedPlaceholders($text)
     {

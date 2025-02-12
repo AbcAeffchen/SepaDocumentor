@@ -1,7 +1,7 @@
 SepaDocumentor - Change Log
 ===============
 
-## 3.0.0 - Jan 20, '24
+## 3.0.0 - Jan 20, '25
 - Add support for php 8.3 and 8.4.
 - Drop support for php <= 8.0.
 

@@ -5,7 +5,6 @@ SepaDocumentor - A Sephpa module to generate documentation files (PDF) for SEPA 
 [![Latest Stable Version](https://poser.pugx.org/abcaeffchen/sepa-documentor/v/stable)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
 [![Total Downloads](https://poser.pugx.org/abcaeffchen/sepa-documentor/downloads)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
 [![License](https://poser.pugx.org/abcaeffchen/sepa-documentor/license)](https://packagist.org/packages/abcaeffchen/sepa-documentor)
-[![Gitter](https://badges.gitter.im/AbcAeffchen/SepaDocumentor.svg)](https://gitter.im/AbcAeffchen/SepaDocumentor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## General
 **SepaDocumentor** is a module for [Sephpa](https://github.com/AbcAeffchen/Sephpa)
